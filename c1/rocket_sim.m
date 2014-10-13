@@ -1,12 +1,15 @@
-function [  ] = rocket_sim( theta, v_ex, c, k, m, T, N )
+function [  ] = rocket_sim( theta, v_ex, T, N )
 g=9.81;
+c=.50;
+m=90.8;
+k=.6;
 v_ext_x = v_ex*cos(theta*(pi/180));
 v_ext_y = v_ex*sin(theta*(pi/180));
 
+
+xinit=[0;1;0;1];
 options = odeset('RelTol', 1e-3); 
 tspan=linspace(0,T,N);
-
-xinit=[0;100;0;100];
 
 [t,x_ans] = ode45( @intfun, tspan, xinit, options );
 
@@ -41,4 +44,3 @@ ylim([0,1.1*max(y)])
 %     end
 
 end
-
