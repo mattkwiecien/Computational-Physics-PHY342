@@ -1,7 +1,7 @@
-function [  ] = rocket_sim( theta, v_ext, c, k, m, T, N )
+function [  ] = rocket_sim( theta, v_ex, c, k, m, T, N )
 g=9.81;
-v_ext_x = v_ext*cos(theta*(pi/180));
-v_ext_y = v_ext*sin(theta*(pi/180));
+v_ext_x = v_ex*cos(theta*(pi/180));
+v_ext_y = v_ex*sin(theta*(pi/180));
 
 options = odeset('RelTol', 1e-3); 
 tspan=linspace(0,T,N);
@@ -25,9 +25,9 @@ ylim([0,1.1*max(y)])
     function ddt = intfun(t,x)
         ddt = [
             x(2); 
-            ( -c*( sqrt(x(2)^2 + x(4)^2) * x(2) ) + (k*v_ext_x) ) / ( m - (k*t) );
+            ( -(c/(m-(k*t)) ) * sqrt(x(2)^2 + x(4)^2) * x(2)) + (-(k/(m-(k*t))) * v_ext_x);
             x(4);
-            ( (k*t - m)*g - c*(sqrt(x(2)^2 + x(4)^2)*x(4)) + (k*v_ext_y))/ (m-(k*t))
+            (-g) + ( -(c/(m-(k*t))) * sqrt(x(2)^2 + x(4)^2) * x(4)) + (-(k/(m-(k*t))) * v_ext_y);
             ];
     end
 
