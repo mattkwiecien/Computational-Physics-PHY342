@@ -87,7 +87,7 @@ set(hFig, 'position', [0,100,width,height])
         
     end
     
-    %trajectory bounds
+    %trajectory bound
     bound1=max(max(y),max(x));
     
     %more plotting...
