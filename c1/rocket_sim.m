@@ -30,15 +30,21 @@ ydot = x_ans(:,4);
 t_max=t_index(1)-1;
 t_plot=1;
 
+%optional output of maximum range of rocket 
 if mode==1
+    
     range=x(t_max);
+    
+%simulation if not requested
 else
+    
 %plotting boundaries
 width=600;
 height=600;
 hFig=figure(1);
 set(hFig, 'position', [0,100,width,height])
 
+%animted plot of trajectory
     while t_plot < t_max
         
         subplot(2,2,1)
@@ -51,7 +57,7 @@ set(hFig, 'position', [0,100,width,height])
         grid on
         
         subplot(2,2,2)
-        plot(t(1:t_plot),xdot(1:t_plot))
+        plot(t(1:t_plot),xdot(1:t_plot),'r')
         ylim([1.1*min(xdot),1.1*max(xdot)])
         xlim([0, 1.1*t(t_max)])
         xlabel('Time (s)')
@@ -69,7 +75,7 @@ set(hFig, 'position', [0,100,width,height])
         grid on
         
         subplot(2,2,4)
-        plot(t(1:t_plot),ydot(1:t_plot))
+        plot(t(1:t_plot),ydot(1:t_plot),'r')
         ylim([-1.1*max(ydot),1.1*max(ydot)])
         xlabel('Time (s)')
         ylabel('Y velocity (m/s)')
@@ -80,9 +86,11 @@ set(hFig, 'position', [0,100,width,height])
         t_plot=t_plot+1;
         
     end
-
+    
+    %trajectory bounds
     bound1=max(max(y),max(x));
-
+    
+    %more plotting...
     hFig2=figure(2);
     set(hFig2, 'position', [800,100,width,height])
     plot(x,y,'r')
@@ -94,7 +102,7 @@ set(hFig, 'position', [0,100,width,height])
     
 end
 
-
+    %RHS function
     function ddt = intfun(t,x)
         M =  m_ship + (m_fuel - (k*t));
         if (m_fuel-(k*t))<=0
