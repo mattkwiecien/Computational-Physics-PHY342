@@ -3,10 +3,7 @@ g=9.81;
 c=0.075;            %Coefficient of Drag for a sphere with r=.3m
 m_ship=9.8;         %Assuming an aluminum spherical ship of r=.15m and a wall thickness of ~.05m.
 m_fuel=5;           %Mass of propellant
-
-if nargin<6
-    mode=0;
-end
+mode=0;
 
 v_ex_x = v_ex*cos(theta*(pi/180));
 v_ex_y = v_ex*sin(theta*(pi/180));
@@ -30,14 +27,16 @@ ydot = x_ans(:,4);
 t_max=t_index(1)-1;
 t_plot=1;
 
-if mode==1
-    range=x(t_max);
-else
 %plotting boundaries
 width=600;
 height=600;
 hFig=figure(1);
 set(hFig, 'position', [0,100,width,height])
+
+if mode==1
+    range=x(t_max);
+
+else
 
     while t_plot < t_max
         
@@ -91,7 +90,6 @@ set(hFig, 'position', [0,100,width,height])
     xlabel('Horizontal Distance (m)')
     ylabel('Vertical Distance (m)')
     title('Simulated motion of a rocket experiencing air resistance')
-    
 end
 
 
