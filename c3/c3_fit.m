@@ -10,7 +10,7 @@ for i=1:1:num
     var_names='m%d.mat';
     fname=sprintf(var_names,i);
     
-    [linear_v, linear_std, mass]=c3_poly(fname);
+    [linear_v, linear_std, mass]=c3_data(fname);
     l_vel(i) = linear_v;
     l_std(i) = linear_std;
     masses(i)=mass;
