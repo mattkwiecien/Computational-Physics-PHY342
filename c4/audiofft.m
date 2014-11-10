@@ -1,7 +1,7 @@
 function [  ] = audiofft( filename, in_freq )
 %% time bounds of file input
 s1=66;
-s2=76;
+s2=72;
 %reading in audio data
 [y, rate]=audioread(filename, [s1 s2]*44100 + 1 );
 [samples, ~]= size(y);
@@ -87,6 +87,9 @@ xlabel('Frequency')
 
 %%  Play new sound
 newY=horzcat(newL,newR);
+pause
+sound(y, 44100)
+pause
 sound(real(newY),44100)
 
 end
