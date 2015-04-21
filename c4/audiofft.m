@@ -1,11 +1,12 @@
 function [  ] = audiofft( filename, in_freq )
 %% time bounds of file input
 s1=66;
-s2=72;
+s2=71;
 %reading in audio data
 [y, rate]=audioread(filename, [s1 s2]*44100 + 1 );
 [samples, ~]= size(y);
-%frequency axis
+%taking all frequencies above the nyquist frequency and shifting them to
+%the left
 freq = (rate/(samples)) * ( (1:samples)-ceil(samples/2) )  ;
 
 %% forward transforms
