@@ -1,5 +1,5 @@
 function [  ] = c3_fit( num )
-
+% Written by Matthew Kwiecien in 2014
 %preallocation
 l_vel = zeros(1,num);
 l_std = zeros(1,num);

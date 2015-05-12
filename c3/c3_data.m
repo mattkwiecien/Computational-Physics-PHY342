@@ -1,4 +1,5 @@
 function [ linear_v, linear_std, m  ] = c3_data( data_loc )
+% Written by Matthew Kwiecien in 2014
 % loading in the data
 load(data_loc)
 m=mass;

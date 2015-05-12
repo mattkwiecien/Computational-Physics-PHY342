@@ -1,5 +1,5 @@
 function [  ] = audiofft( filename, in_freq )
-%%% Written by Matthew Kwiecien
+%%% Written by Matthew Kwiecien in 2014
 %%% audiofft will take the fastforward transform of a given song, and
 %%% filter out all frequencies above in_freq, show the fft of both of them
 %%% in the time and space domain, and play both.
