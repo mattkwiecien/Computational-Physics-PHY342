@@ -1,4 +1,6 @@
 function [ range ] = rocket_sim( theta, v_ex, k, T, N, mode )
+% Written by Matthew Kwiecien in 2014
+
 g=9.81; 
 c=0.075;            %Coefficient of Drag for a sphere with r=.3m
 m_ship=9.8;         %Assuming an aluminum spherical ship of r=.15m and a wall thickness of ~.05m.
@@ -8,42 +10,33 @@ if nargin<6
     mode=0;
 end
 
-v_ex_x = v_ex*cos(theta*(pi/180));
-v_ex_y = v_ex*sin(theta*(pi/180));
+% finding the thrust 
+v_ex_x = v_ex*cos(theta*(pi/180));      v_ex_y = v_ex*sin(theta*(pi/180));
 
-%initial conditions
-xinit=[0;0;0;0];
+% initial conditions
+xinit = [0;0;0;0];
 options = odeset('RelTol', 1e-6); 
-tspan=linspace(0,T,N);
+tspan = linspace(0,T,N);
 
-%solve ODE
+% solve ODE
 [t,x_ans] = ode45( @intfun, tspan, xinit, options );
 
 %make calculations easier with simple variables
-x = x_ans(:,1);
-xdot = x_ans(:,2);
-y = x_ans(:,3);
-ydot = x_ans(:,4);
+x = x_ans(:,1);     xdot = x_ans(:,2);
+y = x_ans(:,3);     ydot = x_ans(:,4);
 
 %finding the index where y becomes negative
-[t_index,~]=find(y<0);
-t_max=t_index(1)-1;
-t_plot=1;
+[t_index,~] = find(y<0);
+t_max=t_index(1)-1;     t_plot=1;
 
 %optional output of maximum range of rocket 
 if mode==1
-    
     range=x(t_max);
-    
 %simulation if not requested
 else
-    
 %plotting boundaries
-width=600;
-height=600;
-hFig=figure(1);
+width=600;      height=600;     hFig=figure(1);
 set(hFig, 'position', [0,100,width,height])
-
 %animted plot of trajectory
     while t_plot < t_max
         
@@ -88,7 +81,7 @@ set(hFig, 'position', [0,100,width,height])
     end
     
     %trajectory bound
-    bound1=max(max(y),max(x));
+    bound1 = max(max(y),max(x));
     
     %more plotting...
     hFig2=figure(2);
