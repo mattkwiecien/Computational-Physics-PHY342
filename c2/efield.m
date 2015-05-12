@@ -1,8 +1,10 @@
 function [ ] = efield( q, x1, x2, x3 )
-%efield will take as inputs the magnitude of the charge, q, and the
-%positions of the charge, x1, x2, and x3, and find where the electric field
-%produced by the charges are 0.
-
+% efield will take as inputs the magnitude of the charge, q, and the
+% positions of the charge, x1, x2, and x3, and find where the electric field
+% produced by the charges are 0.
+%
+% Written by Matthew Kwiecien 2014
+%
 %coefficients
 k=1/(4*pi*8.854187817e-12);
 a=max([x1,x2,x3]);
