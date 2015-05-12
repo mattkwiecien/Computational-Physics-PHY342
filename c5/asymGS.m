@@ -1,4 +1,8 @@
 function [ grid ] = asymGS( n, E )
+% Written by Matthew Kwiecien in 2014
+
+% asymGS function will animate the solution laplaces equation on a
+% complicated geometry.
 
 % preallocation
 BC=1;

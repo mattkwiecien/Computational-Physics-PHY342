@@ -1,4 +1,5 @@
 function [ stop ] = stoppingVal( N )
+% Written by Matthew Kwiecien in 2014
 
 %assuming 'truth' value at 1e-12
 s0 = 1e-14;
