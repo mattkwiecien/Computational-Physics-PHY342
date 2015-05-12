@@ -1,5 +1,10 @@
 function [  ] = audiofft( filename, in_freq )
-%% time bounds of file input
+%%% Written by Matthew Kwiecien
+%%% audiofft will take the fastforward transform of a given song, and
+%%% filter out all frequencies above in_freq, show the fft of both of them
+%%% in the time and space domain, and play both.
+
+% time bounds of file input
 s1=66;
 s2=71;
 %reading in audio data
@@ -9,7 +14,7 @@ s2=71;
 %the left
 freq = (rate/(samples)) * ( (1:samples)-ceil(samples/2) )  ;
 
-%% forward transforms
+%%% forward transforms
 L = fft(y(:,1));
 R = fft(y(:,2));
 fL=fftshift(L);
@@ -22,11 +27,11 @@ fR(filter)=0;
 newL = ifft(ifftshift(fL));
 newR = ifft(ifftshift(fR));
 
-%% plotting the original fourier transform and original data
+%%% plotting the original fourier transform and original data
 figure
 hold on
 
-%left and right transforms
+%%left and right transforms
 subplot(2,2,1)
 plot( freq , fftshift(abs(L)), 'r')
 xlim([-20000,20000])
@@ -54,7 +59,7 @@ title('Right Channel')
 ylabel('Amplitude')
 xlabel('Frequency')
 
-%% plotting the filtered fourier transform and new data
+%%% plotting the filtered fourier transform and new data
 figure
 hold on
 
@@ -86,7 +91,7 @@ title('Filtered Right Channel')
 ylabel('Amplitude')
 xlabel('Frequency')
 
-%%  Play new sound
+%%%  Play new sound
 newY=horzcat(newL,newR);
 pause
 sound(y, 44100)
